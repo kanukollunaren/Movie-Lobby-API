@@ -1,0 +1,12 @@
+{
+  "_id": ObjectId("5fc746b4a692a2eeb854db37"), //  generated unique identifier
+  "title": "The Shawshank Redemption",
+  "genre": "Drama",
+  "rating": 9.3,
+  "streamingLink": "https://www.netflix.com/watch/12345",
+  "releaseYear": 1994,
+  "actors": ["Tim Robbins", "Morgan Freeman"],
+  "director": "Frank Darabont",
+  "createdAt": ISODate("2023-01-01T12:00:00Z"),
+  "updatedAt": ISODate("2023-01-02T15:30:00Z")
+}
