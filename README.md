@@ -1,18 +1,103 @@
-Movie Lobby API
-This document outlines the design and implementation details of a Movie Lobby API for OTT applications, built using TypeScript and MongoDB.
-Technology Stack:
-•	Backend: TypeScript, Node.js (Express framework), Mongoose (MongoDB driver)
-•	Database: MongoDB (ideally)
-•	Testing: Jest (unit testing), Supertest (integration testing)
-•	Code Quality: ESLint
-API Endpoints:
-•	GET /movies: List all the movies in the lobby
-•	GET /search?q={query}: Search for a movie by title or genre
-•	POST /movies: Add a new movie to the lobby (requires "admin" role)
-•	PUT /movies/:id: Update an existing movie's information (requires "admin" role)
-•	DELETE /movies/:id: Delete a movie from the lobby (requires "admin" role)
-Data Model:
-TypeScript
+# Movie Lobby API
+
+This document provides details about the design and implementation of a Movie Lobby API for Over-The-Top (OTT) applications. The API is built using TypeScript and MongoDB, employing various technologies for backend development, testing, and code quality.
+
+## Technology Stack
+
+- **Backend:** TypeScript, Node.js (Express framework), Mongoose (MongoDB driver)
+- **Database:** MongoDB (ideally)
+- **Testing:** Jest (unit testing), Supertest (integration testing)
+- **Code Quality:** ESLint
+
+## API Endpoints
+
+1. **List All Movies**
+   - **Endpoint:** `GET /movies`
+   - **Description:** List all the movies in the lobby.
+   - **Response:**
+     ```json
+     [
+       {
+         "id": "1",
+         "title": "The Shawshank Redemption",
+         "genre": "Drama",
+         "rating": 9.3,
+         "streamingLink": "https://www.netflix.com/watch/12345"
+       },
+       // ...
+     ]
+     ```
+
+2. **Search for Movie**
+   - **Endpoint:** `GET /search?q={query}`
+   - **Parameters:**
+     - `q`: string (required) - search query (by title or genre)
+   - **Response:**
+     ```json
+     [
+       {
+         "id": "2",
+         "title": "The Godfather",
+         "genre": "Crime",
+         "rating": 9.2,
+         "streamingLink": "https://www.hulu.com/watch/54321"
+       },
+       // ...
+     ]
+     ```
+
+3. **Add a Movie**
+   - **Endpoint:** `POST /movies`
+   - **Request Body:**
+     ```json
+     {
+       "title": "The Dark Knight",
+       "genre": "Action",
+       "rating": 9.0,
+       "streamingLink": "https://www.amazon.com/watch/98765"
+     }
+     ```
+   - **Response:**
+     ```json
+     {
+       "message": "Movie added successfully"
+     }
+     ```
+
+4. **Update Movie Information**
+   - **Endpoint:** `PUT /movies/:id`
+   - **Request Body:**
+     ```json
+     {
+       "title": "The Lord of the Rings: The Return of the King",
+       "genre": "Fantasy",
+       "rating": 9.4,
+       "streamingLink": "https://www.disneyplus.com/watch/123456"
+     }
+     ```
+   - **Parameters:**
+     - `id`: string (required) - movie ID
+   - **Response:**
+     ```json
+     {
+       "message": "Movie information updated successfully"
+     }
+     ```
+
+5. **Delete Movie**
+   - **Endpoint:** `DELETE /movies/:id`
+   - **Parameters:**
+     - `id`: string (required) - movie ID
+   - **Response:**
+     ```json
+     {
+       "message": "Movie deleted successfully"
+     }
+     ```
+
+## Data Model
+
+```typescript
 interface Movie {
   id: string;
   title: string;
@@ -20,112 +105,38 @@ interface Movie {
   rating: number;
   streamingLink: string;
 }
-API Documentation:
-1. List All Movies
-GET /movies
+```
 
-Response:
-JSON
-[
-  {
-    "id": "1",
-    "title": "The Shawshank Redemption",
-    "genre": "Drama",
-    "rating": 9.3,
-    "streamingLink": "https://www.netflix.com/watch/12345"
-  },
-  ...
-]
- 
+## Testing
 
-2. Search for Movie
-GET /search?q={query}
-
-Parameters:
-* q: string (required) - search query (by title or genre)
-
-Response:
-JSON
-[
-  {
-    "id": "2",
-    "title": "The Godfather",
-    "genre": "Crime",
-    "rating": 9.2,
-    "streamingLink": "https://www.hulu.com/watch/54321"
-  },
-  ...
-]
- 
-3. Add a Movie
-POST /movies
-
-Request Body:
-{
-  "title": "The Dark Knight",
-  "genre": "Action",
-  "rating": 9.0,
-  "streamingLink": "https://www.amazon.com/watch/98765"
-}
-
-Response:
-JSON
-{
-  "message": "Movie added successfully"
-}
- 
-4. Update Movie Information
-PUT /movies/:id
-
-Request Body:
-{
-  "title": "The Lord of the Rings: The Return of the King",
-  "genre": "Fantasy",
-  "rating": 9.4,
-  "streamingLink": "https://www.disneyplus.com/watch/123456"
-}
-
-Parameters:
-* id: string (required) - movie ID
-
-Response:
-JSON
-{
-  "message": "Movie information updated successfully"
-}
- 
-5. Delete Movie
-DELETE /movies/:id
-
-Parameters:
-* id: string (required) - movie ID
-
-Response:
-JSON
-{
-  "message": "Movie deleted successfully"
-}
- 
-Testing:
 Unit and integration tests are implemented using Jest and Supertest to ensure the API's functionality.
-Code Quality:
+
+## Code Quality
+
 ESLint is used to enforce coding style and ensure maintainability.
-Caching:
-(Optional) You can implement caching mechanisms (e.g., Redis) to improve API performance by caching frequently accessed data.
-Setup and Installation:
-1.	Install dependencies:
-Bash
-npm install
- 
-2.	Configure MongoDB connection details in the environment or config file.
-3.	Start the API:
-Bash
-npm start
- 
-Running Tests:
-Bash
+
+## Caching (Optional)
+
+Caching mechanisms (e.g., Redis) can be implemented to improve API performance by caching frequently accessed data.
+
+## Setup and Installation
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Configure MongoDB connection details in the environment or config file.
+
+3. Start the API:
+   ```bash
+   npm start
+   ```
+
+## Running Tests
+
+```bash
 npm test
- 
+```
 
-
-
+Please note that this is a sample implementation, and you can further enhance it by adding features such as user authentication, pagination, a recommendation engine, error handling, and logging. Adjustments may be necessary based on specific project requirements.
