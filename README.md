@@ -107,6 +107,17 @@ interface Movie {
 }
 ```
 
+_id: Automatically generated unique identifier by MongoDB.
+title: The title of the movie.
+genre: The genre of the movie.
+rating: The rating of the movie.
+streamingLink: The link to stream the movie.
+releaseYear: The year the movie was released.
+actors: An array of actors starring in the movie.
+director: The director of the movie.
+createdAt: The timestamp indicating when the document was created.
+updatedAt: The timestamp indicating when the document was last updated.
+
 ## Testing
 
 Unit and integration tests are implemented using Jest and Supertest to ensure the API's functionality.
